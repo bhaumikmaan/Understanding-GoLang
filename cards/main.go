@@ -32,6 +32,22 @@ func main() {
 	hand, remainingHand := deal(cardsType, 3)
 	hand.print()
 	remainingHand.print()
+	//--------------------------------------------------------------------------------------------------------------------//
+	fmt.Println("------------------------- FILE MANAGEMENT & TYPE CONVERSIONS ---------------------------------------")
+	greeting := "Hi There! This is a string"
+	fmt.Println([]byte(greeting))
+
+	// SAVING DECK TO A FILE
+	// Deck -> []string -> string -> []byte
+	fmt.Println(cardsType.toString())
+	hand.saveToFile("hand.txt")
+
+	// READING FROM A FILE
+	// read bytes and convert it back to deck
+	retrievedHand := newDeckFromFile("hand.txt")
+	retrievedHand.print()
+	errorHand := newDeckFromFile("randomFile.txt")
+	errorHand.print()
 }
 
 // if the type 'string' is not mentioned, this will throw an error

@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/ioutil"
+	"os"
+	"strings"
+)
 
 // Create a new type of deck which is a slice of string
 type deck []string
@@ -12,7 +17,7 @@ func newDeck() deck {
 	cardValues := []string{"Ace", "Two", "Three", "Four"}
 	for _, suit := range cardSuits {
 		for _, value := range cardValues {
-			cards = append(cards, suit+" of "+value)
+			cards = append(cards, value+" of "+suit)
 		}
 	}
 	return cards
@@ -29,4 +34,24 @@ func (d deck) print() {
 	for i, card := range d {
 		fmt.Println(i, card)
 	}
+}
+
+func (d deck) toString() string {
+	//return strings.Join(d, ",")
+	return strings.Join([]string(d), ",")
+}
+func (d deck) saveToFile(filename string) error {
+	// Pass in filename, convert deck to byte slice and pass the permission 0666 - anyone can read and write
+	fmt.Println("Saving data to file:", filename)
+	return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
+}
+
+func newDeckFromFile(filename string) deck {
+	byteSlice, err := ioutil.ReadFile(filename)
+	if err != nil {
+		// Log the error and exit the program
+		fmt.Println("Error: ", err)
+		os.Exit(1)
+	}
+	return deck(strings.Split(string(byteSlice), ","))
 }
