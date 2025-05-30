@@ -46,8 +46,14 @@ func main() {
 	// read bytes and convert it back to deck
 	retrievedHand := newDeckFromFile("hand.txt")
 	retrievedHand.print()
-	errorHand := newDeckFromFile("randomFile.txt")
-	errorHand.print()
+	// GET ERROR FOR PASSING NON EXISTING FILE
+	//errorHand := newDeckFromFile("randomFile.txt")
+	//errorHand.print()
+	//--------------------------------------------------------------------------------------------------------------------//
+	fmt.Println("------------------------- SHUFFLE & RANDOM ---------------------------------------")
+	// SHUFFLE CARDS
+	retrievedHand.shuffle()
+	retrievedHand.print()
 }
 
 // if the type 'string' is not mentioned, this will throw an error
