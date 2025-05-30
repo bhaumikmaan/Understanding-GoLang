@@ -14,8 +14,8 @@ func main() {
 	// Reassign without using the := operator
 	card = reassignCard()
 	fmt.Println(card)
-	fmt.Println("------------------------------------------------------------------------")
 	//--------------------------------------------------------------------------------------------------------------------//
+	fmt.Println("----------------------------- LEARNING ABOUT SLICES -------------------------------------------")
 
 	// Arrays and Slice
 	cards := []string{"Ace of Spades", reassignCard()}
@@ -25,10 +25,13 @@ func main() {
 	for index, card := range cards {
 		fmt.Println(index, card)
 	}
-	fmt.Println("------------------------------------------------------------------------")
 	//--------------------------------------------------------------------------------------------------------------------//
-	cardsType := deck{"Ace of Diamonds", "Ace of Clubs", "Ace of Spades"}
+	fmt.Println("----------------------------- LEARNING ABOUT TYPES -------------------------------------------")
+	cardsType := newDeck()
 	cardsType.print()
+	hand, remainingHand := deal(cardsType, 3)
+	hand.print()
+	remainingHand.print()
 }
 
 // if the type 'string' is not mentioned, this will throw an error
