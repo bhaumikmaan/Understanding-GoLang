@@ -33,11 +33,12 @@ func main() {
 		zip:   42,
 	}}
 	jim.print()
-	jimPointer := &jim
-	jimPointer.updateName("Jimmy")
+	//jimPointer := &jim
+	jim.updateName("Jimmy")
 	jim.print()
 }
 
+// pointerToPerson is the pointer that we passed - when we do *person, we are referring that the value is a pointer of type 'person' that we are working with
 func (pointerToPerson *person) updateName(name string) {
 	(*pointerToPerson).firstName = name
 }
